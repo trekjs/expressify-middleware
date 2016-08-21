@@ -5,13 +5,13 @@ The Modern (ES6) and **Express-Style** Middleware Composition.
 ## Installation
 
 ```
-$ npm install express-middleware
+$ npm install expressify-middleware
 ```
 
 ## Examples
 
 ```js
-const Middleware = require('express-middleware')
+const Middleware = require('expressify-middleware')
 const middleware = new Middleware()
 
 middleware.push((req, res, next) => {
