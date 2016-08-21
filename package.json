@@ -1,15 +1,16 @@
 {
-  "name": "trek-middleware",
+  "name": "expressify-middleware",
   "version": "0.0.0",
-  "description": "The Modern (ES6) Middleware Composition",
+  "description": "The Modern (ES6) and Express-Style Middleware Composition",
   "main": "index.js",
   "scripts": {
     "bench": "matcha benchmarks",
     "test": "nyc --reporter=lcov ava"
   },
-  "repository": "git+https://github.com/trekjs/middleware.git",
+  "repository": "git+https://github.com/trekjs/expressify-middleware.git",
   "keywords": [
     "trek",
+    "express",
     "middleware",
     "compose",
     "iterator"

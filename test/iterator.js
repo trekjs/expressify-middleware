@@ -17,29 +17,32 @@ test('middleware[Symbol.iterator]() should return self', t => {
 
 test('middleware iterator', async t => {
   const middleware = t.context
-  middleware.push((ctx, next) => {
-    ctx.arr.push(1)
+  middleware.push((req, res, next) => {
+    req.arr.push(1)
     next()
-    ctx.arr.push(6)
+    res.sended = true
+    req.arr.push(6)
   })
-  middleware.push((ctx, next) => {
-    ctx.arr.push(2)
+  middleware.push((req, res, next) => {
+    req.arr.push(2)
     next()
-    ctx.arr.push(5)
+    req.arr.push(5)
   })
-  middleware.push((ctx, next) => {
-    ctx.arr.push(3)
+  middleware.push((req, res, next) => {
+    req.arr.push(3)
     next()
-    ctx.arr.push(4)
+    req.arr.push(4)
   })
 
   const iter = middleware[Symbol.iterator]()
 
   t.is('function', typeof iter.next)
 
-  const ctx = { arr: [] }
+  const req = { arr: [] }
+  const res = {}
 
-  await iter.next(0, ctx)
+  await iter.next(0, req, res)
 
-  t.deepEqual(ctx.arr, [1, 2, 3, 4, 5, 6])
+  t.deepEqual(req.arr, [1, 2, 3, 4, 5, 6])
+  t.true(res.sended)
 })
