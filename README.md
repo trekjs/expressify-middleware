@@ -41,8 +41,8 @@ middleware.compose(req, res).then(() => {
 
 ## Badges
 
-[![Build Status](https://travis-ci.org/trekjs/express-middleware.svg?branch=master)](https://travis-ci.org/trekjs/express-middleware)
-[![codecov](https://codecov.io/gh/trekjs/express-middleware/branch/master/graph/badge.svg)](https://codecov.io/gh/trekjs/express-middleware)
+[![Build Status](https://travis-ci.org/trekjs/expressify-middleware.svg?branch=master)](https://travis-ci.org/trekjs/expressify-middleware)
+[![codecov](https://codecov.io/gh/trekjs/expressify-middleware/branch/master/graph/badge.svg)](https://codecov.io/gh/trekjs/expressify-middleware)
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ---
