@@ -2,7 +2,7 @@
 
 const Middleware = require('..')
 
-suite('trek-middleware', () => {
+suite('expressify-middleware', () => {
   set('type', 'adaptive')
   set('mintime', 1000)
   set('delay', 100)
