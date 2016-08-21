@@ -9,7 +9,7 @@ suite('expressify-middleware', () => {
 
   const logic = () => Promise.resolve(true)
 
-  const fn = (ctx, next) => {
+  const fn = (req, res, next) => {
     return logic().then(next).then(logic)
   }
 
@@ -20,7 +20,7 @@ suite('expressify-middleware', () => {
       middleware.push(fn)
     }
     bench(`(fn * ${count})`, done => {
-      middleware.compose({}).then(done, done)
+      middleware.compose({}, {}).then(done, done)
     })
   }
 })
