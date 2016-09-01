@@ -11,6 +11,7 @@ $ npm install expressify-middleware
 ## Examples
 
 ```js
+const co = require('co')
 const Middleware = require('expressify-middleware')
 const middleware = new Middleware()
 
@@ -26,11 +27,11 @@ middleware.push(async (req, res, next) => {
   req.arr.push(5)
 })
 
-middleware.push(function * (req, res, next) {
+middleware.push(co.wrap(function * (req, res, next) {
   req.arr.push(3)
   yield next()
   req.arr.push(4)
-})
+}))
 
 const req = { arr: [] }
 const res = {}
