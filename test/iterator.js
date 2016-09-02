@@ -19,9 +19,10 @@ test('middleware iterator', async t => {
   const middleware = t.context
   middleware.push((req, res, next) => {
     req.arr.push(1)
-    next()
-    res.sended = true
-    req.arr.push(6)
+    return next().then(() => {
+      res.sended = true
+      req.arr.push(6)
+    })
   })
   middleware.push((req, res, next) => {
     req.arr.push(2)
@@ -36,12 +37,13 @@ test('middleware iterator', async t => {
 
   const iter = middleware[Symbol.iterator]()
 
+  t.true(iter === middleware)
   t.is('function', typeof iter.next)
 
   const req = { arr: [] }
   const res = {}
 
-  await iter.next(0, req, res)
+  await iter.compose(req, res)
 
   t.deepEqual(req.arr, [1, 2, 3, 4, 5, 6])
   t.true(res.sended)

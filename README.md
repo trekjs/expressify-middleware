@@ -17,8 +17,9 @@ const middleware = new Middleware()
 
 middleware.push((req, res, next) => {
   req.arr.push(1)
-  next()
-  req.arr.push(6)
+  return next().then(() => {
+    req.arr.push(6)
+  })
 })
 
 middleware.push(async (req, res, next) => {
