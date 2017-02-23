@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = class Middleware extends Array {
+export default class Middleware extends Array {
 
   next (req, res, last, i = 0, done = false, called = false, fn = undefined) {
     if ((done = i > this.length)) return
