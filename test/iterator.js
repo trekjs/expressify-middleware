@@ -5,17 +5,7 @@ test.beforeEach(t => {
   t.context = new Middleware()
 })
 
-test('middleware[Symbol.iterator] should a function', t => {
-  const middleware = t.context
-  t.true('function' === typeof middleware[Symbol.iterator])
-})
-
-test('middleware[Symbol.iterator]() should return self', t => {
-  const middleware = t.context
-  t.is(middleware, middleware[Symbol.iterator]())
-})
-
-test('middleware iterator', async t => {
+test('iterator', async t => {
   const middleware = t.context
   middleware.push((req, res, next) => {
     req.arr.push(1)
@@ -24,9 +14,9 @@ test('middleware iterator', async t => {
       req.arr.push(6)
     })
   })
-  middleware.push((req, res, next) => {
+  middleware.push(async (req, res, next) => {
     req.arr.push(2)
-    next()
+    await next()
     req.arr.push(5)
   })
   middleware.push((req, res, next) => {
@@ -37,13 +27,12 @@ test('middleware iterator', async t => {
 
   const iter = middleware[Symbol.iterator]()
 
-  t.true(iter === middleware)
   t.is('function', typeof iter.next)
 
   const req = { arr: [] }
   const res = {}
 
-  await iter.compose(req, res)
+  await middleware.compose(req, res)
 
   t.deepEqual(req.arr, [1, 2, 3, 4, 5, 6])
   t.true(res.sended)

@@ -2,12 +2,13 @@
   "name": "expressify-middleware",
   "version": "1.0.0",
   "description": "The Modern (ES6) and Express-Style Middleware Composition",
-  "main": "index.js",
-  "scripts": {
-    "bench": "matcha benchmarks",
-    "test": "nyc --reporter=lcov ava"
+  "repository": "trekjs/expressify-middleware",
+  "license": "MIT",
+  "author": {
+    "name": "Fangdun Cai",
+    "email": "cfddream@gmail.com",
+    "url": "fundon.me"
   },
-  "repository": "git+https://github.com/trekjs/expressify-middleware.git",
   "keywords": [
     "trek",
     "express",
@@ -15,11 +16,20 @@
     "compose",
     "iterator"
   ],
-  "author": "Fangdun Cai <cfddream@gmail.com>",
-  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "bench": "matcha benchmarks",
+    "test": "nyc ava"
+  },
   "devDependencies": {
-    "ava": "0.16.0",
-    "matcha": "0.7.0",
-    "nyc": "8.1.0"
+    "ava": "0.18",
+    "matcha": "0.7",
+    "nyc": "10"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   }
 }
